@@ -140,4 +140,8 @@ public class Kategori {
         dbHelper.executeQuery(SQL);
         
     }
+    
+    public String toString(){
+        return nama;
+    }
 }

@@ -33,6 +33,7 @@ public class FrmAnggota extends javax.swing.JFrame {
         txtNama.setText("");
         txtAlamat.setText("");
         txtTelepon.setText("");
+        txtNama.requestFocus();
     }
 
     public void tampilkanData(){

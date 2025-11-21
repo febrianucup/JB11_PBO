@@ -27,45 +27,51 @@ public static void main(String[] args) throws SQLException
 //{
 //System.out.println("Nama: " + k.getNama() + ", Ket: " + k.getKeterangan());
 
-Anggota a1 = new Anggota("Budi", "Jl. Kenanga 12", "08123456789");
-        Anggota a2 = new Anggota("Siti", "Jl. Melati 5", "08561234567");
-        Anggota a3 = new Anggota("Doni", "Jl. Kamboja 3", "08991234567");
-
-        a1.save();
-        a2.save();
-        a3.save();
-
-        // ======================
-        // TEST UPDATE
-        // ======================
-        a2.setAlamat("Jl. Melati Indah No. 7");
-        a2.save();
-
-        // ======================
-        // TEST DELETE
-        // ======================
-        a3.delete();
-
-        // ======================
-        // TEST SELECT ALL
-        // ======================
-        System.out.println("=== DATA ANGGOTA (ALL) ===");
-        for (Anggota a : new Anggota().getAll()) {
-            System.out.println("ID: " + a.getIdAnggota() 
-                    + ", Nama: " + a.getNama() 
-                    + ", Alamat: " + a.getAlamat()
-                    + ", Telepon: " + a.getTelepon());
-        }
-
-        // ======================
-        // TEST SEARCH
-        // ======================
-        System.out.println("\n=== PENCARIAN 'Melati' ===");
-        for (Anggota a : new Anggota().search("Melati")) {
-            System.out.println("ID: " + a.getIdAnggota() 
-                    + ", Nama: " + a.getNama()
-                    + ", Alamat: " + a.getAlamat()
-                    + ", Telepon: " + a.getTelepon());
-        }
+//Anggota a1 = new Anggota("Budi", "Jl. Kenanga 12", "08123456789");
+//        Anggota a2 = new Anggota("Siti", "Jl. Melati 5", "08561234567");
+//        Anggota a3 = new Anggota("Doni", "Jl. Kamboja 3", "08991234567");
+//
+//        a1.save();
+//        a2.save();
+//        a3.save();
+//
+//        // ======================
+//        // TEST UPDATE
+//        // ======================
+//        a2.setAlamat("Jl. Melati Indah No. 7");
+//        a2.save();
+//
+//        // ======================
+//        // TEST DELETE
+//        // ======================
+//        a3.delete();
+//
+//        // ======================
+//        // TEST SELECT ALL
+//        // ======================
+//        System.out.println("=== DATA ANGGOTA (ALL) ===");
+//        for (Anggota a : new Anggota().getAll()) {
+//            System.out.println("ID: " + a.getIdAnggota() 
+//                    + ", Nama: " + a.getNama() 
+//                    + ", Alamat: " + a.getAlamat()
+//                    + ", Telepon: " + a.getTelepon());
+//        }
+//
+//        // ======================
+//        // TEST SEARCH
+//        // ======================
+//        System.out.println("\n=== PENCARIAN 'Melati' ===");
+//        for (Anggota a : new Anggota().search("Melati")) {
+//            System.out.println("ID: " + a.getIdAnggota() 
+//                    + ", Nama: " + a.getNama()
+//                    + ", Alamat: " + a.getAlamat()
+//                    + ", Telepon: " + a.getTelepon());
+//        }
+    
+    Kategori kat = new Kategori("Komik", "Buku Komik");
+    kat.save();
+    Buku buku = new Buku("aku", "gramedia", "febri", kat);
+    buku.save();
+    
 }
 }
