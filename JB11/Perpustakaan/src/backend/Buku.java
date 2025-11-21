@@ -7,7 +7,7 @@ package backend;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
+    
 
 /**
  *
@@ -17,17 +17,17 @@ public class Buku {
     private int idBuku;
     private String judul;
     private String penerbit;
-    private String tahun;
+    private String penulis;
     private Kategori kategori;
     private int idKategori; // tambahan jika ingin menyimpan idKategori secara terpisah
 
     public Buku() {
     }
 
-    public Buku(String judul, String penerbit, String tahun, Kategori kategori) {
+    public Buku(String judul, String penerbit, String penulis, Kategori kategori) {
         this.judul = judul;
         this.penerbit = penerbit;
-        this.tahun = tahun;
+        this.penulis = penulis;
         this.kategori = kategori;
         this.idKategori = kategori.getIdKategori();
     }
@@ -38,6 +38,14 @@ public class Buku {
 
     public void setIdBuku(int idBuku) {
         this.idBuku = idBuku;
+    }
+
+    public void setPenulis(String penulis) {
+        this.penulis = penulis;
+    }
+
+    public String getPenulis() {
+        return penulis;
     }
 
     public String getJudul() {
@@ -54,14 +62,6 @@ public class Buku {
 
     public void setPenerbit(String penerbit) {
         this.penerbit = penerbit;
-    }
-
-    public String getTahun() {
-        return tahun;
-    }
-
-    public void setTahun(String tahun) {
-        this.tahun = tahun;
     }
 
     public int getIdKategori() {
@@ -96,7 +96,7 @@ public class Buku {
                 buku.setIdBuku(rs.getInt("idbuku"));
                 buku.setJudul(rs.getString("judul"));
                 buku.setPenerbit(rs.getString("penerbit"));
-                buku.setTahun(rs.getString("tahun"));
+                buku.setPenulis(rs.getString("penulis"));
                 buku.setKategori(k);
             }
         } catch (Exception e) {
@@ -121,7 +121,7 @@ public class Buku {
                 buku.setIdBuku(rs.getInt("idbuku"));
                 buku.setJudul(rs.getString("judul"));
                 buku.setPenerbit(rs.getString("penerbit"));
-                buku.setTahun(rs.getString("tahun"));
+                buku.setPenulis(rs.getString("penulis"));
                 buku.setKategori(k);
 
                 list.add(buku);
@@ -150,7 +150,7 @@ public class Buku {
                 buku.setIdBuku(rs.getInt("idbuku"));
                 buku.setJudul(rs.getString("judul"));
                 buku.setPenerbit(rs.getString("penerbit"));
-                buku.setTahun(rs.getString("tahun"));
+                buku.setPenulis(rs.getString("penulis"));
                 buku.setKategori(k);
 
                 list.add(buku);
@@ -163,13 +163,13 @@ public class Buku {
 
     public void save() {
         if (getById(this.idBuku).getIdBuku() == 0) {
-            String SQL = "INSERT INTO buku (judul, penerbit, tahun, idkategori) VALUES (\'" +
-                         this.judul + "\', \'" + this.penerbit + "\', \'" + this.tahun + "\', " +
+            String SQL = "INSERT INTO buku (judul, penerbit, penulis, idkategori) VALUES (\'" +
+                         this.judul + "\', \'" + this.penerbit + "\', \'" + this.penulis + "\', " +
                          this.kategori.getIdKategori() + ") RETURNING idbuku";
             this.idBuku = dbHelper.insertQueryGetId(SQL);
         } else {
             String SQL = "UPDATE buku SET judul = \'" + this.judul + "\', penerbit = \'" +
-                         this.penerbit + "\', tahun = \'" + this.tahun + "\', idkategori = " +
+                         this.penerbit + "\', penulis = \'" + this.penulis + "\', idkategori = " +
                          this.kategori.getIdKategori() + " WHERE idbuku = " + this.idBuku;
             dbHelper.executeQuery(SQL);
         }
